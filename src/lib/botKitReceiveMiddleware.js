@@ -1,4 +1,4 @@
-module.exports = function(client) {
+module.exports = function(client, options) {
     return function(bot, message, next) {
         if (!message) return next && next();
 
@@ -18,7 +18,7 @@ module.exports = function(client) {
             client.addEvent('message_received', message, function(err) {
                 if (err)
                     bot.botkit.log("[Keen IO] Failed to save message_received event", err);
-                else
+                else if (options && options.debug)
                     bot.botkit.log("[Keen IO] Saved message_received event.");
             });
             return next && next();

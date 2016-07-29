@@ -82,12 +82,12 @@ var client = new Keen({
 });
 
 var controller = Botkit.slackbot({
-    debug: true,
+    debug: true
 });
 
 // Add the middleware to automatically track conversation events
-controller.middleware.receive.use(KeenBotKitIntegration.botKitReceiveMiddleware(client));
-controller.middleware.send.use(KeenBotKitIntegration.botKitSendMiddleware(client));
+controller.middleware.receive.use(KeenBotKitIntegration.botKitReceiveMiddleware(client, {debug: true}));
+controller.middleware.send.use(KeenBotKitIntegration.botKitSendMiddleware(client, {debug: true}));
 
 var bot = controller.spawn({
     token: process.env.token
