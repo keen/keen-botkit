@@ -1,0 +1,31 @@
+{
+  "name": "keen-botkit",
+  "version": "1.0.0",
+  "description": "Bot Kit Integration for Keen IO",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nemo/keen-botkit.git"
+  },
+  "dependencies": {
+    "botkit": "^0.1.1",
+    "keen-js": "^3.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "keen_io",
+    "keen",
+    "io",
+    "bot-kit",
+    "keen-io",
+    "bot",
+    "kit",
+    "analyitcs",
+    "slack"
+  ],
+  "author": "Nima Gardideh <nima@halfmoon.ws>",
+  "license": "MIT"
+}
