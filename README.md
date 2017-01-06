@@ -77,3 +77,7 @@ token=<MY TOKEN> node slack_bot_example.js
 ```
 
 If you want to view the events that are sent to Keen IO on your own account, you should replace the credentials on [line 79](https://github.com/nemo/keen-botkit/blob/master/slack_bot_example.js#L79).
+
+## Contributing
+
+This is an open source project that started within the Keen IO Community. We'd love future involvement from the community! 💖 If you are interested in getting involved, please see [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
