@@ -135,14 +135,15 @@ h3 {
   font-weight: 200;
 }
 
-.hero a.hero-btn.primary {
+.hero a.hero-btn.secondary {
   background-color: rgba(255,255,255,.25);
   border: medium none;
+}
 
+.hero a.hero-btn.primary {
   padding-left: 40px;
   padding-right: 40px;
 }
-
 
 .hero a.hero-btn:focus,
 .hero a.hero-btn:hover {
@@ -151,8 +152,8 @@ h3 {
   color: #00afd7;
 }
 
-.hero a.hero-btn.primary:hover,
-.hero a.hero-btn.primary:focus {
+.hero a.hero-btn.secondary:hover,
+.hero a.hero-btn.secondary:focus {
   background-color: rgba(255,255,255,.35);
   color: #fff;
 }
