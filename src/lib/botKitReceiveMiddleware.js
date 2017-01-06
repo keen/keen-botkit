@@ -1,27 +1,45 @@
 module.exports = function(client, options) {
-    return function(bot, message, next) {
-        if (!message) return next && next();
+  var eventCollection = options && options.collection || 'message_received';
+  var payloadMiddleware = function(payload, cb) {
+    if (!options.payload) return cb(null, payload);
 
-        // Don't track messages we have sent as received messages
-        if (message && message.user === bot.identity.id)
-            return next && next();
+    if (typeof options.payload === 'function') {
+      return options.payload(Object.assign({}, payload), cb);
+    } else if (typeof options.payload === 'object') {
+      return cb(null, Object.assign(payload, options.payload));
+    } else return cb(null, payload);
+  };
 
-        // Our replys – don't track
-        if ((message && message.ok) || (message && message.reply_to))
-            return next && next();
+  return function(bot, message, next) {
+    if (!message) return next && next();
 
-        // Don't track slack connection events
-        if (message && (message.type === 'hello' || message.type === 'reconnect_url'))
-            return next && next();
+    // Don't track messages we have sent as received messages
+    if (message && message.user === bot.identity.id)
+      return next && next();
 
-        bot.findConversation(message, function(conversation) {
-            client.addEvent('message_received', message, function(err) {
-                if (err)
-                    bot.botkit.log("[Keen IO] Failed to save message_received event", err);
-                else if (options && options.debug)
-                    bot.botkit.log("[Keen IO] Saved message_received event.");
-            });
-            return next && next();
+    // Our replys – don't track
+    if ((message && message.ok) || (message && message.reply_to))
+      return next && next();
+
+    // Don't track slack / irc events that aren't message related
+    if (message && (message.type !== 'message'))
+      return next && next();
+
+    bot.findConversation(message, function(conversation) {
+      payloadMiddleware(message, function(err, payload) {
+        if (err)
+          return bot.botkit.log("[Keen IO] Payload middleware failed for message_received.", err);
+
+        client.addEvent(eventCollection, payload, function(err) {
+          if (err)
+            bot.botkit.log("[Keen IO] Failed to save message_received event", err);
+          else if (options && options.debug)
+            bot.botkit.log("[Keen IO] Saved message_received event.", payload);
         });
-    };
+      });
+
+      // Don't block;
+      return next && next();
+    });
+  };
 };

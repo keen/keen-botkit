@@ -86,8 +86,23 @@ var controller = Botkit.slackbot({
 });
 
 // Add the middleware to automatically track conversation events
-controller.middleware.receive.use(KeenBotKitIntegration.botKitReceiveMiddleware(client, {debug: true}));
-controller.middleware.send.use(KeenBotKitIntegration.botKitSendMiddleware(client, {debug: true}));
+controller.middleware.receive.use(KeenBotKitIntegration.botKitReceiveMiddleware(client, {
+  collection: 'received_messages',
+  payload: function(message, callback) {
+    message.built_with_love_in_san_francisco = true;
+    callback(null, message);
+  },
+  debug: true
+}));
+
+controller.middleware.send.use(KeenBotKitIntegration.botKitSendMiddleware(client, {
+  collection: 'sent_messages',
+  payload: {
+    built_location: 'San Francisco',
+    with_love: true
+  },
+  debug: true
+}));
 
 var bot = controller.spawn({
     token: process.env.token

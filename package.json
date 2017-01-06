@@ -1,6 +1,6 @@
 {
   "name": "keen-botkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bot Kit Integration for Keen IO",
   "main": "index.js",
   "repository": {

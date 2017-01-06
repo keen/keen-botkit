@@ -33,7 +33,7 @@ The integration works by adding middleware to Botkit using its [middleware syste
 Specifically, on the `send` and `receive` middleware. To initialize the middleware, you have to pass an initialized Keen IO client from [keen-js](https://github.com/keen/keen-js)):
 
 ```javascript
-var KeenBotKitIntegration = require('./index');
+var KeenBotKitIntegration = require('keen-botkit');
 
 // Initialize Keen IO client
 var client = new Keen({
@@ -56,12 +56,53 @@ var controller = Botkit.slackbot({
 controller.middleware.receive.use(receiveMiddleware);
 controller.middleware.send.use(sendMiddleware);
 ```
+### Collection Name
+
+By default, the middleware sent events to collections named `message_received` and `message_sends` for received messages and sent messages respectively. You can modify this behavior by passing in a `collection` option:
+
+```javascript
+var KeenBotKitIntegration = require('keen-botkit');
+
+var receiveMiddleware = KeenBotKitIntegration.botKitReceiveMiddleware(client, {
+  collection: 'user_messages'
+});
+
+var sendMiddleware = KeenBotKitIntegration.botKitSendMiddleware(client, {
+  collection: 'bot_messages'
+});
+```
+
+### Payload
+
+In the spirit of customizability, you can modify the payload that is sent to Keen by providing a `payload` object or function to modify the payload before it goes out:
+
+```javascript
+var KeenBotKitIntegration = require('keen-botkit');
+
+// Works for both botKitSendMiddleware and botKitReceiveMiddleware
+var sendMiddleware = KeenBotKitIntegration.botKitSendMiddleware(client, {
+  payload: function(message, callback) {
+    // Modify message or pass your own payload
+    message._user_id = '10';
+
+    callback(null, message);
+  }
+});
+
+var sendMiddleware = KeenBotKitIntegration.botKitSendMiddleware(client, {
+  payload: {
+    static_attribute: 9000
+  }
+});
+```
 
 ### Debug
 
 By default, errors are logged. But if you want to get some logs on successful event saves – just pass in `debug: true` as the second argument when you initialize the middleware:
 
 ```javascript
+var KeenBotKitIntegration = require('keen-botkit');
+
 var receiveMiddleware = KeenBotKitIntegration.botKitReceiveMiddleware(client, {debug: true});
 var sendMiddleware = KeenBotKitIntegration.botKitSendMiddleware(client, {debug: true});
 ```
