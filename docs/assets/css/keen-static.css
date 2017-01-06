@@ -171,8 +171,13 @@ h3 {
 
 .platforms {
   background: #F3F5F6;
-  margin: 20px 0 0;
-  padding: 30px 0;
+  margin-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+}
+
+.platforms h2 {
+  padding-bottom: 15px;
 }
 
 .platforms ul {
@@ -250,4 +255,34 @@ pre, code {
 
 .love p {
   margin-bottom: 0;
+}
+
+
+.navbar.floating {
+  background: white;
+  padding-bottom: 5px;
+}
+
+.navbar.floating .navbar-brand {
+  display: none;
+}
+
+.navbar.floating .navbar-brand.navbar-floating-logo {
+  visibility: visible !important;
+  display: block !important;
+}
+
+.navbar.floating a, .navbar.floating * {
+  color: #00afd7;
+}
+
+
+.navbar.floating a.btn {
+  border: 2px solid #00afd7;
+}
+
+.navbar.floating a.btn:hover,
+.navbar.floating a.btn:focus {
+  background: #00afd7;
+  color: #fff;
 }

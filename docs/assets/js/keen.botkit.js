@@ -4,7 +4,6 @@ var client = new Keen({
 });
 
 Keen.ready(function(){
-
   var impressions_timeline_by_device = new Keen.Query("count", {
     eventCollection: "impressions",
     groupBy: "user.device_info.device.family",
