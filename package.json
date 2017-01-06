@@ -8,17 +8,14 @@
     "url": "https://github.com/nemo/keen-botkit.git"
   },
   "dependencies": {
-    "botkit": "^0.1.1",
+    "botkit": "^0.4.9",
     "keen-js": "^3.4.1"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "keywords": [
     "keen_io",
     "keen",
-    "io",
     "bot-kit",
     "keen-io",
     "bot",
