@@ -45,7 +45,7 @@ If you find a security vulnerability, do NOT open an issue. Email team@keen.io i
 
 If you find a bug that's not a security vulnerability please head over to the issues tab of this rep and open up an issue.
 
-We created these labels to help us organize issues: bugs, docs, enhancements, and feature-request. Please use them when creating an issue where it makes sense!
+We created these labels to help us organize issues: bug, docs, enhancements, and feature-request. Please use them when creating an issue where it makes sense!
 
 ## Suggesting features
 
@@ -53,4 +53,4 @@ We welcome your feedback and requests. If you have a straight forward request pl
 
 # Code review process
 
-The maintaining team looks at Pull Requests and issues on a regular basis and will respond as soon as possible..
+The maintaining team looks at Pull Requests and issues on a regular basis and will respond as soon as possible.
