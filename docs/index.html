@@ -54,18 +54,18 @@
               <li><a href="https://keen.io/community/" target="_blank">Community</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="https://keen.io/signup?s=gh-botkit" class="btn navbar-btn" target="_blank">Sign Up</a></li>
+              <li><a href="https://keen.io/signup?s=gh-botkit" class="btn navbar-btn" target="_blank">Start Tracking</a></li>
             </ul>
           </nav>
         </div>
       </header>
 
-      <h1 id="content-start">Analytics for Botkit with Keen IO</h1>
-      <p class="lead">Track and understand conversational behaviour.</p>
+      <h1 id="content-start">Gain insights with Botkit Analytics</h1>
+      <p class="lead">Start tracking conversations with your Slack bot and gather insights.</p>
 
       <div class="hero-btn-group">
         <a class="btn hero-btn secondary" href="https://github.com/keen/keen-botkit" target="_blank">Source on Github</a>
-        <a class="btn hero-btn primary" href="https://keen.io/signup?s=gh-botkit" target="_blank">Sign Up</a>
+        <a class="btn hero-btn primary" href="https://keen.io/signup?s=gh-botkit" target="_blank">Start Tracking</a>
       </div>
 
       <iframe src="http://ghbtns.com/github-btn.html?user=keen&amp;repo=keen-botkit&amp;type=watch&amp;count=true"
@@ -82,19 +82,19 @@
         <div class="col-xs-12 col-sm-4">
           <h2 class="text-center">Easy Integration</h2>
           <p>
-            Keen-Botkit is a <a href="https://github.com/howdyai/botkit#middleware" target="_blank">middleware</a> that plugs right into Botkit! It comes with great defaults, you can customize what it tracks and integration takes just a few seconds! <a href="https://github.com/keen/keen-botkit" target="_blank">Learn More</a>
+            Plug Keen-Botkit right into Botkit in seconds with great defaults and several customizable tracking options.
           </p>
         </div>
 
         <div class="col-xs-12 col-sm-4">
           <h2 class="text-center">Full Control</h2>
           <p>
-            Collect what you want, across your bot and other products and query for what you’re looking for. Control how everything is tracked, calculate and displayed.
+            Collect all the data you want from your bot, and have complete control over queries, and how your data is displayed.
           </p>
         </div>
 
         <div class="col-xs-12 col-sm-4">
-          <h2 class="text-center">Understand Behaviour</h2>
+          <h2 class="text-center">Scalable Analytics</h2>
           <p>
             Powered by a scalable analytics platform, you are free to focus on what matters most: making your product better.
           </p>
@@ -121,32 +121,29 @@
       <div class="col-xs-12 text-left">
         <h2>Tracking, Querying and Visualization all in one place</h2>
         <p>
-          Powered by Keen IO, you are able to use the full-force of the platform from understanding how many messages are going through your system every hour, or how well you’re retaining users (using <a href="https://keen.github.io/cohorts/" target="_blank">cohorts</a>) to making sure users are getting certain tasks done using <a href="https://keen.io/docs/data-analysis/intro-to-funnel-analysis/" target="_blank">funnels</a>.
-        </p>
-        <p>
-          Here are a few common metrics – when we used Keen-Botkit with an internal Slack bot – we’ve put together to show you how easy it is to get started.
+          Powered by Keen IO, you are able to use the full-force of the platform to understand how many messages are going through your system every hour, running <a href="https://keen.github.io/cohorts/" target="_blank">cohorts</a>) to measure retention, setting up <a href="https://keen.io/docs/data-analysis/intro-to-funnel-analysis/" target="_blank">funnels</a> to measure task completion, and many more important metrics.
         </p>
       </div>
     </div>
 
-    <h3>Metric #1</h3>
+    <h2>Common Metrics</h2>
+    <h3>Messages Per Hour</h3>
+    <p>The heartbeat of your bot. Messages it receives per hour.</p>
     <div class="row example">
       <div class="col-xs-12 col-sm-6 code">
         <h4>Code</h4>
         <pre>
-          <code class="js javascript">
-var impressions_timeline_by_device = new Keen.Query("count", {
-  eventCollection: "impressions",
-  groupBy: "user.device_info.device.family",
+          <code class="js javascript">var messagesPerHourQuery = new Keen.Query("count", {
+  eventCollection: receivedCollection,
   interval: "hourly",
   timeframe: {
-    start: "2014-05-04T00:00:00.000Z",
-    end: "2014-05-05T00:00:00.000Z"
+    start: "2016-12-25T00:00:00.000Z",
+    end: "2017-01-05T23:59:59.000Z"
   }
 });
 
-client.draw(impressions_timeline_by_device, document.getElementById("metric-01"), {
-  chartType: "columnchart",
+client.draw(messagesPerHourQuery, document.getElementById("metric-01"), {
+  chartType: "areachart",
   title: false,
   height: 250,
   width: "auto",
@@ -174,40 +171,85 @@ client.draw(impressions_timeline_by_device, document.getElementById("metric-01")
     </div>
 
 
-    <h3>Metric #2</h3>
+    <h3>Busiest Usage Hours</h3>
+    <p>Calculating at what times users message your bot the most.</p>
     <div class="row example">
       <div class="col-xs-12 col-sm-6 code">
         <h4>Code</h4>
         <pre>
-          <code class="js javascript">
-var impressions_timeline_by_device = new Keen.Query("count", {
-  eventCollection: "impressions",
-  groupBy: "user.device_info.device.family",
+          <code class="js javascript">var messagesPerHourQuery = new Keen.Query("count", {
+  eventCollection: receivedCollection,
   interval: "hourly",
   timeframe: {
-    start: "2014-05-04T00:00:00.000Z",
-    end: "2014-05-05T00:00:00.000Z"
+    start: "2016-12-25T00:00:00.000Z",
+    end: "2017-01-05T23:59:59.000Z"
   }
 });
 
-client.draw(impressions_timeline_by_device, document.getElementById("metric-01"), {
-  chartType: "columnchart",
-  title: false,
-  height: 250,
-  width: "auto",
-  chartOptions: {
-    chartArea: {
-      height: "75%",
-      left: "10%",
-      top: "5%",
-      width: "60%"
-    },
-    bar: {
-      groupWidth: "85%"
-    },
-    isStacked: true
-  }
-});
+var hourlyMessagesChart = new Keen.Dataviz()
+   .el(document.getElementById('metric-02'))
+   .chartType('columnchart')
+   .height(300)
+   .chartOptions({
+     chartArea: {
+         left: '10%',
+         width: '90%',
+         top: '10%',
+         height: '80%'
+     },
+     isStacked:true,
+     legend: { position: 'none' }
+   })
+   .prepare(); // start spinner
+
+
+ client.run(messagesPerHourQuery, function(err, res) {
+     if (err) throw('Error!');
+
+     // Normalize the dates
+     var now = new Date();
+     now.setMinutes(0);
+     now.setSeconds(0);
+
+     var nestedData = d3.nest()
+     .key(function(d) {
+         // Use the hour of day as the key
+         return new Date(d.timeframe.start).getHours();
+     })
+     .rollup(function(leaves) {
+         var total = d3.sum(leaves, function(d) { return d.value; });
+         // Use the average number of messages at a given hour as the value
+         return {
+             denominator: leaves.length,
+             total: total,
+             avg: total / leaves.length
+         };
+     })
+     .entries(res.result);
+
+     // Format your data so it can be drawn as an areachart
+     var result = nestedData.map(function(d){
+         var start = new Date(now);
+         start.setHours(d.key);
+
+         var date = new Date(start.getTime() + (60 * 60 * 1000));
+         date.setMinutes(0);
+         date.setSeconds(0);
+
+         return {
+             value: d.value.avg,
+             timeframe: {
+                 start: start.toISOString(),
+                 end: date.toISOString()
+             }
+         };
+     });
+
+     // Render visualization
+     hourlyMessagesChart
+       .parseRawData({ result: result })
+       .render();
+ })
           </code>
         </pre>
       </div>
@@ -218,24 +260,23 @@ client.draw(impressions_timeline_by_device, document.getElementById("metric-01")
       </div>
     </div>
 
-    <h3>Metric #3</h3>
+    <h3>Most Active Teams</h3>
+    <p>An easy way to keep track of your best customers. Note that you can pass in a more human friendly<br/>way to describe the team than their Slack ID using the <a href="https://github.com/nemo/keen-botkit#payload" target="_blank">payload modifier</a> functionality.</p>
     <div class="row example">
       <div class="col-xs-12 col-sm-6 code">
         <h4>Code</h4>
         <pre>
-          <code class="js javascript">
-var impressions_timeline_by_device = new Keen.Query("count", {
-  eventCollection: "impressions",
-  groupBy: "user.device_info.device.family",
-  interval: "hourly",
+          <code class="js javascript">var popularTeamsQuery = new Keen.Query("count", {
+  eventCollection: receivedCollection,
+  group_by: 'team',
   timeframe: {
-    start: "2014-05-04T00:00:00.000Z",
-    end: "2014-05-05T00:00:00.000Z"
+    start: "2016-12-25T00:00:00.000Z",
+    end: "2017-01-05T23:59:59.000Z"
   }
 });
 
-client.draw(impressions_timeline_by_device, document.getElementById("metric-01"), {
-  chartType: "columnchart",
+client.draw(popularTeamsQuery, document.getElementById("metric-03"), {
+  chartType: 'piechart',
   title: false,
   height: 250,
   width: "auto",
@@ -245,11 +286,7 @@ client.draw(impressions_timeline_by_device, document.getElementById("metric-01")
       left: "10%",
       top: "5%",
       width: "60%"
-    },
-    bar: {
-      groupWidth: "85%"
-    },
-    isStacked: true
+    }
   }
 });
           </code>
@@ -265,7 +302,7 @@ client.draw(impressions_timeline_by_device, document.getElementById("metric-01")
 
   <div class="cta">
     <h1>
-      Gain insights into your bot’s conversations with Keen IO and Botkit. <a href="https://keen.io/signup?s=gh-botkit" class="btn navbar-btn" target="_blank">Sign Up</a>
+      Gain insights into your bot’s conversations with Keen IO and Botkit. <a href="https://keen.io/signup?s=gh-botkit" class="btn navbar-btn" target="_blank">Start Tracking</a>
     </h1>
   </div>
 
@@ -282,8 +319,9 @@ client.draw(impressions_timeline_by_device, document.getElementById("metric-01")
   <script type="text/javascript" src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/lib/highlightjs/highlight.pack.min.js"></script>
   <script type="text/javascript" src="assets/lib/keen-js/dist/keen.min.js"></script>
-  <script src="assets/js/navbar.js" charset="utf-8"></script>
-  <script src="assets/js/keen.botkit.js" charset="utf-8"></script>
+  <script type="text/javascript" src="assets/lib/d3/d3.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="assets/js/navbar.js" charset="utf-8"></script>
+  <script type="text/javascript" src="assets/js/keen.botkit.js" charset="utf-8"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <!-- <script type="text/javascript" src="assets/js/meta.js"></script> -->
 </body>
