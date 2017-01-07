@@ -4,11 +4,11 @@ var client = new Keen({
 });
 
 var sentCollection = 'sent_collection';
-var receivedCollection = 'received_collection';
+var messagesReceived = 'received_collection';
 
 Keen.ready(function(){
   var messagesPerHourQuery = new Keen.Query("count", {
-    eventCollection: receivedCollection,
+    eventCollection: messagesReceived,
     interval: "hourly",
     timeframe: {
       start: "2016-12-25T00:00:00.000Z",
@@ -16,23 +16,29 @@ Keen.ready(function(){
     }
   });
 
-  client.draw(messagesPerHourQuery, document.getElementById("metric-01"), {
-    chartType: "areachart",
-    title: false,
-    height: 300,
-    width: "auto",
-    chartOptions: {
+  var messagesPerHourChart = new Keen.Dataviz()
+    .el(document.getElementById("metric-01"))
+    .height(300)
+    .chartOptions({
       chartArea: {
         left: '10%',
         width: '90%',
         top: '10%',
         height: '80%'
       },
-      bar: {
-        groupWidth: "85%"
-      },
-      isStacked: true
-    }
+      isStacked: true,
+      legend: { position: 'none' }
+    })
+    .prepare();
+
+  client.run(messagesPerHourQuery, function(err, res) {
+    if (err) throw err;
+
+    // Render visualization
+    messagesPerHourChart
+      .data(res)
+      .render();
+
   });
 
   var hourlyMessagesChart = new Keen.Dataviz()
@@ -53,7 +59,7 @@ Keen.ready(function(){
 
 
    client.run(messagesPerHourQuery, function(err, res) {
-       if (err) throw('Error!');
+       if (err) throw err;
 
        // Normalize the dates
        var now = new Date();
@@ -63,7 +69,7 @@ Keen.ready(function(){
        var nestedData = d3.nest()
        .key(function(d) {
            // Use the hour of day as the key
-           return new Date(d.timeframe.start).getHours();
+           return new Date(d.timeframe.start).getHours() + 1;
        })
        .rollup(function(leaves) {
            var total = d3.sum(leaves, function(d) { return d.value; });
@@ -96,13 +102,13 @@ Keen.ready(function(){
 
        // Render visualization
        hourlyMessagesChart
-         .parseRawData({ result: result })
+         .data({ result: result })
          .render();
    });
 
 
    var popularTeamsQuery = new Keen.Query("count", {
-     eventCollection: receivedCollection,
+     eventCollection: messagesReceived,
      group_by: 'team',
      timeframe: {
        start: "2016-12-25T00:00:00.000Z",
@@ -110,18 +116,29 @@ Keen.ready(function(){
      }
    });
 
-   client.draw(popularTeamsQuery, document.getElementById("metric-03"), {
-     chartType: 'piechart',
-     title: false,
-     height: 350,
-     width: "auto",
-     chartOptions: {
-       chartArea: {
-         height: "75%",
-         left: "10%",
-         top: "5%",
-         width: "60%"
-       }
-     }
+   var popularTeamsChart = new Keen.Dataviz()
+      .el(document.getElementById("metric-03"))
+      .chartType('columnchart')
+      .height(300)
+      .chartOptions({
+        chartArea: {
+            left: '10%',
+            width: '90%',
+            top: '10%',
+            height: '80%'
+        },
+        isStacked:true,
+        legend: { position: 'none' }
+      })
+      .prepare(); // start spinner
+
+   // Run the query
+   client.run(popularTeamsQuery, function(err, res) {
+     if (err) throw err;
+
+     // Render visualization
+     popularTeamsChart
+      .data(res)
+      .render();
    });
 });

@@ -54,18 +54,18 @@
               <li><a href="https://keen.io/community/" target="_blank">Community</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="https://keen.io/signup?s=gh-botkit" class="btn navbar-btn" target="_blank">Start Tracking</a></li>
+              <li><a href="https://keen.io/signup?s=gh-botkit" class="btn navbar-btn" target="_blank">Get Started Free</a></li>
             </ul>
           </nav>
         </div>
       </header>
 
-      <h1 id="content-start">Gain insights with Botkit Analytics</h1>
-      <p class="lead">Start tracking conversations with your Slack bot and gather insights.</p>
+      <h1 id="content-start">Analytics API for Botkit</h1>
+      <p class="lead">Full control of how you track and analyze your key bot metrics.</p>
 
       <div class="hero-btn-group">
         <a class="btn hero-btn secondary" href="https://github.com/keen/keen-botkit" target="_blank">Source on Github</a>
-        <a class="btn hero-btn primary" href="https://keen.io/signup?s=gh-botkit" target="_blank">Start Tracking</a>
+        <a class="btn hero-btn primary" href="https://keen.io/signup?s=gh-botkit" target="_blank">Get Started Free</a>
       </div>
 
       <iframe src="http://ghbtns.com/github-btn.html?user=keen&amp;repo=keen-botkit&amp;type=watch&amp;count=true"
@@ -82,14 +82,14 @@
         <div class="col-xs-12 col-sm-4">
           <h2 class="text-center">Easy Integration</h2>
           <p>
-            Plug Keen-Botkit right into Botkit in seconds with great defaults and several customizable tracking options.
+            Plug Keen-Botkit right into Botkit in seconds with great defaults and customizable tracking options. <a href="https://github.com/keen/keen-botkit" target="_blank">Learn More.</a>
           </p>
         </div>
 
         <div class="col-xs-12 col-sm-4">
           <h2 class="text-center">Full Control</h2>
           <p>
-            Collect all the data you want from your bot, and have complete control over queries, and how your data is displayed.
+            Steam key usage data with complete control over how and where your data is displayed.
           </p>
         </div>
 
@@ -116,25 +116,30 @@
     </div>
   </div>
 
-  <div class="container examples">
+  <div class="container value-prop">
     <div class="row">
-      <div class="col-xs-12 text-left">
-        <h2>Tracking, Querying and Visualization all in one place</h2>
-        <p>
-          Powered by Keen IO, you are able to use the full-force of the platform to understand how many messages are going through your system every hour, running <a href="https://keen.github.io/cohorts/" target="_blank">cohorts</a>) to measure retention, setting up <a href="https://keen.io/docs/data-analysis/intro-to-funnel-analysis/" target="_blank">funnels</a> to measure task completion, and many more important metrics.
+      <div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
+        <!-- <h1>Your Key Bot Metrics All in One Place</h1> -->
+        <p class="lead">
+        Powered by <a href="https://keen.io/?s=gh-botkit" target="_blank">Keen IO</a>, you are able to use the power of the platform to understand how many messages are going through your system, run <a href="https://keen.github.io/cohorts/" target="_blank">cohorts</a> to measure retention, set up <a href="https://keen.io/docs/data-analysis/intro-to-funnel-analysis/" target="_blank">funnels</a> to measure task completion, and any key metric unique to your bot. See how to <a href="https://github.com/keen/keen-botkit" target="_blank">get started</a>.
         </p>
       </div>
     </div>
 
-    <h2>Common Metrics</h2>
-    <h3>Messages Per Hour</h3>
-    <p>The heartbeat of your bot. Messages it receives per hour.</p>
+  </div>
+
+  <hr />
+
+  <div class="container examples">
+    <h1 class="text-center">Example Metrics</h1>
+    <h3 class="text-center">Messages Per Hour</h3>
+    <p class="text-center">The heartbeat of your bot. Messages it receives per hour.</p>
     <div class="row example">
       <div class="col-xs-12 col-sm-6 code">
         <h4>Code</h4>
         <pre>
           <code class="js javascript">var messagesPerHourQuery = new Keen.Query("count", {
-  eventCollection: receivedCollection,
+  eventCollection: messagesReceived,
   interval: "hourly",
   timeframe: {
     start: "2016-12-25T00:00:00.000Z",
@@ -142,23 +147,29 @@
   }
 });
 
-client.draw(messagesPerHourQuery, document.getElementById("metric-01"), {
-  chartType: "areachart",
-  title: false,
-  height: 250,
-  width: "auto",
-  chartOptions: {
+var messagesPerHourChart = new Keen.Dataviz()
+  .el(document.getElementById("metric-01"))
+  .height(300)
+  .chartOptions({
     chartArea: {
-      height: "75%",
-      left: "10%",
-      top: "5%",
-      width: "60%"
+      left: '10%',
+      width: '90%',
+      top: '10%',
+      height: '80%'
     },
-    bar: {
-      groupWidth: "85%"
-    },
-    isStacked: true
-  }
+    isStacked: true,
+    legend: { position: 'none' }
+  })
+  .prepare();
+
+client.run(messagesPerHourQuery, function(err, res) {
+  if (err) throw err;
+
+  // Render visualization
+  messagesPerHourChart
+    .data(res)
+    .render();
+
 });
           </code>
         </pre>
@@ -171,14 +182,14 @@ client.draw(messagesPerHourQuery, document.getElementById("metric-01"), {
     </div>
 
 
-    <h3>Busiest Usage Hours</h3>
-    <p>Calculating at what times users message your bot the most.</p>
+    <h3 class="text-center">Busiest Usage Hours</h3>
+    <p class="text-center">Calculating at what times users message your bot the most.</p>
     <div class="row example">
       <div class="col-xs-12 col-sm-6 code">
         <h4>Code</h4>
         <pre>
           <code class="js javascript">var messagesPerHourQuery = new Keen.Query("count", {
-  eventCollection: receivedCollection,
+  eventCollection: 'received_messages',
   interval: "hourly",
   timeframe: {
     start: "2016-12-25T00:00:00.000Z",
@@ -260,14 +271,14 @@ var hourlyMessagesChart = new Keen.Dataviz()
       </div>
     </div>
 
-    <h3>Most Active Teams</h3>
-    <p>An easy way to keep track of your best customers. Note that you can pass in a more human friendly<br/>way to describe the team than their Slack ID using the <a href="https://github.com/nemo/keen-botkit#payload" target="_blank">payload modifier</a> functionality.</p>
+    <h3 class="text-center">Most Active Teams</h3>
+    <p class="text-center">An easy way to keep track of your best customers. Note that you can pass in a more human friendly<br/>way to describe the team than their Slack ID using the <a href="https://github.com/nemo/keen-botkit#payload" target="_blank">payload modifier</a> functionality.</p>
     <div class="row example">
       <div class="col-xs-12 col-sm-6 code">
         <h4>Code</h4>
         <pre>
           <code class="js javascript">var popularTeamsQuery = new Keen.Query("count", {
-  eventCollection: receivedCollection,
+  eventCollection: messagesReceived,
   group_by: 'team',
   timeframe: {
     start: "2016-12-25T00:00:00.000Z",
@@ -275,19 +286,30 @@ var hourlyMessagesChart = new Keen.Dataviz()
   }
 });
 
-client.draw(popularTeamsQuery, document.getElementById("metric-03"), {
-  chartType: 'piechart',
-  title: false,
-  height: 250,
-  width: "auto",
-  chartOptions: {
-    chartArea: {
-      height: "75%",
-      left: "10%",
-      top: "5%",
-      width: "60%"
-    }
-  }
+var popularTeamsChart = new Keen.Dataviz()
+   .el(document.getElementById("metric-03"))
+   .chartType('columnchart')
+   .height(300)
+   .chartOptions({
+     chartArea: {
+         left: '10%',
+         width: '90%',
+         top: '10%',
+         height: '80%'
+     },
+     isStacked:true,
+     legend: { position: 'none' }
+   })
+   .prepare(); // start spinner
+
+// Run the query
+client.run(popularTeamsQuery, function(err, res) {
+  if (err) throw err;
+
+  // Render visualization
+  popularTeamsChart
+   .data(res)
+   .render();
 });
           </code>
         </pre>
@@ -302,8 +324,12 @@ client.draw(popularTeamsQuery, document.getElementById("metric-03"), {
 
   <div class="cta">
     <h1>
-      Gain insights into your bot’s conversations with Keen IO and Botkit. <a href="https://keen.io/signup?s=gh-botkit" class="btn navbar-btn" target="_blank">Start Tracking</a>
+      Take control of your analyitcs with Keen IO and Botkit.
     </h1>
+    <div class="hero-btn-group">
+      <a class="btn hero-btn secondary" href="https://github.com/keen/keen-botkit" target="_blank">Source on Github</a>
+      <a class="btn hero-btn primary" href="https://keen.io/signup?s=gh-botkit" target="_blank">Get Started Free</a>
+    </div>
   </div>
 
   <div class="footer">
