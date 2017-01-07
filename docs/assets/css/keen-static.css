@@ -198,7 +198,12 @@ h3 {
 }
 
 .examples h3 {
+  margin-top: 30px;
   margin-bottom: 0px;
+}
+
+.examples .example {
+  margin-top: 20px;
 }
 
 pre {

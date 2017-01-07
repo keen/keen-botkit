@@ -60,7 +60,7 @@
         </div>
       </header>
 
-      <h1 id="content-start">Analytics API for Botkit</h1>
+      <h1 id="content-start">Analytics for Botkit by Keen IO</h1>
       <p class="lead">Full control of how you track and analyze your key bot metrics.</p>
 
       <div class="hero-btn-group">
@@ -136,7 +136,6 @@
     <p class="text-center">The heartbeat of your bot. Messages it receives per hour.</p>
     <div class="row example">
       <div class="col-xs-12 col-sm-6 code">
-        <h4>Code</h4>
         <pre>
           <code class="js javascript">var messagesPerHourQuery = new Keen.Query("count", {
   eventCollection: messagesReceived,
@@ -176,7 +175,6 @@ client.run(messagesPerHourQuery, function(err, res) {
       </div>
 
       <div class="col-xs-12 col-sm-6 chart">
-        <h4>Chart</h4>
         <div id="metric-01"></div>
       </div>
     </div>
@@ -186,7 +184,6 @@ client.run(messagesPerHourQuery, function(err, res) {
     <p class="text-center">Calculating at what times users message your bot the most.</p>
     <div class="row example">
       <div class="col-xs-12 col-sm-6 code">
-        <h4>Code</h4>
         <pre>
           <code class="js javascript">var messagesPerHourQuery = new Keen.Query("count", {
   eventCollection: 'received_messages',
@@ -266,7 +263,6 @@ var hourlyMessagesChart = new Keen.Dataviz()
       </div>
 
       <div class="col-xs-12 col-sm-6 chart">
-        <h4>Chart</h4>
         <div id="metric-02"></div>
       </div>
     </div>
@@ -275,7 +271,6 @@ var hourlyMessagesChart = new Keen.Dataviz()
     <p class="text-center">An easy way to keep track of your best customers. Note that you can pass in a more human friendly<br/>way to describe the team than their Slack ID using the <a href="https://github.com/nemo/keen-botkit#payload" target="_blank">payload modifier</a> functionality.</p>
     <div class="row example">
       <div class="col-xs-12 col-sm-6 code">
-        <h4>Code</h4>
         <pre>
           <code class="js javascript">var popularTeamsQuery = new Keen.Query("count", {
   eventCollection: messagesReceived,
@@ -316,7 +311,6 @@ client.run(popularTeamsQuery, function(err, res) {
       </div>
 
       <div class="col-xs-12 col-sm-6 chart">
-        <h4>Chart</h4>
         <div id="metric-03"></div>
       </div>
     </div>
