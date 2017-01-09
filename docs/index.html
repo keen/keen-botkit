@@ -138,7 +138,7 @@
       <div class="col-xs-12 col-sm-6 code">
         <pre>
           <code class="js javascript">var messagesPerHourQuery = new Keen.Query("count", {
-  eventCollection: messagesReceived,
+  event_collection: 'messages_received',
   interval: "hourly",
   timeframe: {
     start: "2016-12-25T00:00:00.000Z",
@@ -186,7 +186,7 @@ client.run(messagesPerHourQuery, function(err, res) {
       <div class="col-xs-12 col-sm-6 code">
         <pre>
           <code class="js javascript">var messagesPerHourQuery = new Keen.Query("count", {
-  eventCollection: 'received_messages',
+  event_collection: 'messages_received',
   interval: "hourly",
   timeframe: {
     start: "2016-12-25T00:00:00.000Z",
@@ -273,7 +273,7 @@ var hourlyMessagesChart = new Keen.Dataviz()
       <div class="col-xs-12 col-sm-6 code">
         <pre>
           <code class="js javascript">var popularTeamsQuery = new Keen.Query("count", {
-  eventCollection: messagesReceived,
+  event_collection: 'messages_received',
   group_by: 'team',
   timeframe: {
     start: "2016-12-25T00:00:00.000Z",

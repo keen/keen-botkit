@@ -8,10 +8,10 @@ var messagesReceived = 'received_collection';
 
 Keen.ready(function(){
   var messagesPerHourQuery = new Keen.Query("count", {
-    eventCollection: messagesReceived,
+    event_collection: messagesReceived,
     interval: "hourly",
     timeframe: {
-      start: "2016-12-25T00:00:00.000Z",
+      start: "2016-12-29T00:00:00.000Z",
       end: "2017-01-05T23:59:59.000Z"
     }
   });
@@ -108,7 +108,7 @@ Keen.ready(function(){
 
 
    var popularTeamsQuery = new Keen.Query("count", {
-     eventCollection: messagesReceived,
+     event_collection: messagesReceived,
      group_by: 'team',
      timeframe: {
        start: "2016-12-25T00:00:00.000Z",
