@@ -4,7 +4,7 @@ We've made it very easy to track messages and conversations within your Slack bo
 
 If you have custom needs, you can always fork this project and make modifications. 
 
-Read to get started? [Create a free Keen IO account](keen.io/signup?s=gh-botkit-readme) to grab your projectId and writeKey.
+Read to get started? [Create a free Keen IO account](https://keen.io/signup?s=gh-botkit-readme) to grab your projectId and writeKey.
 
 ## Install
 
