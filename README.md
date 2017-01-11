@@ -1,8 +1,10 @@
-# Keen IO Bot Integration
+# Keen IO BotKit Integration
 
 We've made it very easy to track messages and conversations within your Slack bot (built with [bot-kit](https://github.com/howdyai/botkit)), so you can analyze the usage of your bot.
 
-If you have custom needs, you can always fork this project and make modifications. If you don't know about Keen IO, [check it out](https://keen.io)!
+If you have custom needs, you can always fork this project and make modifications. 
+
+Read to get started? [Create a free Keen IO account](keen.io/signup?s=gh-botkit-readme) to grab your projectId and writeKey.
 
 ## Install
 
@@ -121,4 +123,4 @@ If you want to view the events that are sent to Keen IO on your own account, you
 
 ## Contributing
 
-This is an open source project that started within the Keen IO Community. We'd love future involvement from the community! 💖 If you are interested in getting involved, please see [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
+This is an open source project that started within the Keen IO Community ([you can read more about its creator here](https://medium.com/@ngardideh/tracking-conversations-with-botkit-and-keen-io-63a9209a12da#.s11jcdoo8). We'd love future involvement from the community! 💖 If you are interested in getting involved, please see [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
