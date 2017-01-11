@@ -123,4 +123,4 @@ If you want to view the events that are sent to Keen IO on your own account, you
 
 ## Contributing
 
-This is an open source project that started within the Keen IO Community ([you can read more about its creator here](https://medium.com/@ngardideh/tracking-conversations-with-botkit-and-keen-io-63a9209a12da#.s11jcdoo8). We'd love future involvement from the community! 💖 If you are interested in getting involved, please see [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
+This is an open source project that started within the Keen IO Community - [you can read more about its creator here](https://medium.com/@ngardideh/tracking-conversations-with-botkit-and-keen-io-63a9209a12da#.s11jcdoo8). We'd love future involvement from the community! 💖 If you are interested in getting involved, please see [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
