@@ -1,11 +1,11 @@
 module.exports = function(client, options) {
   var eventCollection = options && options.collection || 'message_sends';
   var payloadMiddleware = function(payload, cb) {
-    if (!options.payload) return cb(null, payload);
+    if (options && !options.payload) return cb(null, payload);
 
-    if (typeof options.payload === 'function') {
+    if (options && typeof options.payload === 'function') {
       return options.payload(Object.assign({}, payload), cb);
-    } else if (typeof options.payload === 'object') {
+    } else if (options && typeof options.payload === 'object') {
       return cb(null, Object.assign(payload, options.payload));
     } else return cb(null, payload);
   };
