@@ -77,8 +77,8 @@ var Keen = require('keen-js');
 var KeenBotKitIntegration = require('./index');
 
 var client = new Keen({
-    projectId: "572565e124819665aec6f066",
-    writeKey: "c79f198adce91b49bba38737d72b9a33b6a098640dea878e4f90c0c80f998161d794a7507faf4669a981d7449ba803ffdc81945718652454606b4639ab930bb0c08c11e572d8d1c036c8d41e82b6ad73a7f0b5b553345ebad9f5a4a052e67d82"
+    projectId: "INSERT_KEEN_PROJECT_ID_HERE",
+    writeKey: "INSERT_KEEN_WRITE_KEY_HERE"
 });
 
 var controller = Botkit.slackbot({
